@@ -1,0 +1,9 @@
+language: php
+dist: trusty
+php:
+- 7.4
+script:
+- vendor/bin/phpunit
+before_script:
+- composer install
+- composer require --dev phpunit/phpunit
