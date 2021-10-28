@@ -4,10 +4,11 @@
     "keywords":["oauth","oauth2","auth","httpfoundation"],
     "type":"library",
     "license":"MIT",
-    "authors": [
+    "authors":[
         {
-            "name": "Waystocom",
-            "email": "contact@waystocom.com"
+            "name":"Waystocom",
+            "email": "waystocom@gmail.com",
+            "homepage":"https://www.waystocom.com"
         }
     ],
     "homepage": "https://github.com/waystocom/oauth2-server-httpfoundation-bridge",

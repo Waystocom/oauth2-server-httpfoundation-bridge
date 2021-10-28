@@ -1,14 +1,5 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: WAYSTOCOM
- * Date: 22/10/2021
- * Time: 14:23
- */
-
-declare(strict_types=1);
-
 namespace OAuth2\HttpFoundationBridge;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -24,7 +15,7 @@ class Response extends JsonResponse implements ResponseInterface
      *
      * @param array $parameters
      */
-    public function addParameters(array $parameters): void
+    public function addParameters(array $parameters)
     {
         if ($this->content && $data = json_decode($this->content, true)) {
             $parameters = array_merge($data, $parameters);
@@ -38,7 +29,7 @@ class Response extends JsonResponse implements ResponseInterface
      *
      * @param array $httpHeaders
      */
-    public function addHttpHeaders(array $httpHeaders): void
+    public function addHttpHeaders(array $httpHeaders)
     {
         foreach ($httpHeaders as $key => $value) {
             $this->headers->set($key, $value);
@@ -52,7 +43,7 @@ class Response extends JsonResponse implements ResponseInterface
      *
      * @return mixed|null
      */
-    public function getParameter(string $name)
+    public function getParameter($name)
     {
         if ($this->content && $data = json_decode($this->content, true)) {
             return $data[$name] ?? null;
@@ -62,12 +53,12 @@ class Response extends JsonResponse implements ResponseInterface
     /**
      * setError
      *
-     * @param int         $statusCode
-     * @param string      $name
-     * @param string|null $description
-     * @param string|null $uri
+     * @param int    $statusCode
+     * @param string $name
+     * @param null   $description
+     * @param null   $uri
      */
-    public function setError(int $statusCode, string $name, ?string $description = null, ?string $uri = null): void
+    public function setError($statusCode, $name, $description = null, $uri = null)
     {
         $this->setStatusCode($statusCode);
         $this->addParameters(
@@ -84,21 +75,21 @@ class Response extends JsonResponse implements ResponseInterface
     /**
      * setRedirect
      *
-     * @param int         $statusCode
-     * @param string      $url
-     * @param string|null $state
-     * @param string|null $error
-     * @param string|null $errorDescription
-     * @param string|null $errorUri
+     * @param int    $statusCode
+     * @param string $url
+     * @param null   $state
+     * @param null   $error
+     * @param null   $errorDescription
+     * @param null   $errorUri
      */
     public function setRedirect(
-        int $statusCode,
-        string $url,
-        ?string $state = null,
-        ?string $error = null,
-        ?string $errorDescription = null,
-        ?string $errorUri = null
-    ): void {
+        $statusCode,
+        $url,
+        $state = null,
+        $error = null,
+        $errorDescription = null,
+        $errorUri = null
+    ) {
         $this->setStatusCode($statusCode);
 
         $params = array_filter(
@@ -127,7 +118,7 @@ class Response extends JsonResponse implements ResponseInterface
      *
      * @return object
      */
-    public function setStatusCode(int $statusCode, $text = null): object
+    public function setStatusCode($statusCode, $text = null)
     {
         return parent::setStatusCode($statusCode);
     }

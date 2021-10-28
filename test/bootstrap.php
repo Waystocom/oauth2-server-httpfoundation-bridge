@@ -1,14 +1,5 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: WAYSTOCOM
- * Date: 22/10/2021
- * Time: 14:23
- */
-
-declare(strict_types=1);
-
 if (!file_exists($autoload_file = __DIR__ . '/../vendor/autoload.php')) {
     if (empty($_SERVER['OAUTH2BUNDLE_VENDOR_AUTOLOAD'])) {
         throw new Exception(

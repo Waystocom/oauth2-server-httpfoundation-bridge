@@ -1,14 +1,5 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: WAYSTOCOM
- * Date: 22/10/2021
- * Time: 14:23
- */
-
-declare(strict_types=1);
-
 namespace OAuth2\HttpFoundationBridge;
 
 use Symfony\Component\HttpFoundation\HeaderBag;
@@ -25,12 +16,12 @@ class Request extends BaseRequest implements RequestInterface
     /**
      * query
      *
-     * @param string      $name
-     * @param string|null $default
+     * @param string $name
+     * @param null   $default
      *
      * @return bool|float|int|string|InputBag|null
      */
-    public function query(string $name, ?string $default = null)
+    public function query($name, $default = null)
     {
         return $this->query->get($name, $default);
     }
@@ -38,12 +29,12 @@ class Request extends BaseRequest implements RequestInterface
     /**
      * request
      *
-     * @param string      $name
-     * @param string|null $default
+     * @param string $name
+     * @param null   $default
      *
      * @return bool|float|int|mixed|string|InputBag|null
      */
-    public function request(string $name, ?string $default = null)
+    public function request($name, $default = null)
     {
         return $this->request->get($name, $default);
     }
@@ -51,12 +42,12 @@ class Request extends BaseRequest implements RequestInterface
     /**
      * server
      *
-     * @param string      $name
-     * @param string|null $default
+     * @param string $name
+     * @param null   $default
      *
      * @return mixed
      */
-    public function server(string $name, ?string $default = null)
+    public function server($name, $default = null)
     {
         return $this->server->get($name, $default);
     }
@@ -64,12 +55,12 @@ class Request extends BaseRequest implements RequestInterface
     /**
      * headers
      *
-     * @param string      $name
-     * @param string|null $default
+     * @param string $name
+     * @param null $default
      *
      * @return string|null
      */
-    public function headers(string $name, ?string $default = null): ?string
+    public function headers($name, $default = null): ?string
     {
         return $this->headers->get($name, $default);
     }
@@ -93,15 +84,7 @@ class Request extends BaseRequest implements RequestInterface
      */
     public static function createFromRequest(BaseRequest $request): Request
     {
-        return new static(
-            $request->query->all(),
-            $request->request->all(),
-            $request->attributes->all(),
-            $request->cookies->all(),
-            $request->files->all(),
-            $request->server->all(),
-            $request->getContent()
-        );
+        return new static($request->query->all(), $request->request->all(), $request->attributes->all(), $request->cookies->all(), $request->files->all(), $request->server->all(), $request->getContent());
     }
 
     /**
@@ -114,7 +97,6 @@ class Request extends BaseRequest implements RequestInterface
     public static function createFromRequestStack(RequestStack $request): Request
     {
         $request = $request->getCurrentRequest();
-
         return self::createFromRequest($request);
     }
 
