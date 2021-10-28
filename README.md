@@ -18,7 +18,7 @@ Installation
 ```
 {
     "require": {
-        "micropole-idea/oauth2-server-httpfoundation-bridge": "v1.0",
+        "waystocom/oauth2-server-httpfoundation-bridge": "v1.0",
         ...
     },
     ...
