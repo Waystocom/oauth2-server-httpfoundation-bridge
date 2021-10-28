@@ -109,17 +109,4 @@ class Response extends JsonResponse implements ResponseInterface
 
         $this->headers->set('Location', $url);
     }
-
-    /**
-     * setStatusCode
-     *
-     * @param int  $statusCode
-     * @param null $text
-     *
-     * @return object
-     */
-    public function setStatusCode($statusCode, $text = null)
-    {
-        return parent::setStatusCode($statusCode);
-    }
 }
