@@ -109,4 +109,36 @@ class Response extends JsonResponse implements ResponseInterface
 
         $this->headers->set('Location', $url);
     }
+
+    /**
+     * setStatusCode
+     *
+     * @param int  $statusCode
+     * @param null $text
+     *
+     * @return object
+     */
+    public function setStatusCode($statusCode, $text = null)
+    {
+        $this->statusCode = $statusCode;
+        if ($this->isInvalid()) {
+            throw new \InvalidArgumentException(sprintf('The HTTP status code "%s" is not valid.', $statusCode));
+        }
+
+        if (null === $text) {
+            $this->statusText = self::$statusTexts[$statusCode] ?? 'unknown status';
+
+            return $this;
+        }
+
+        if (false === $text) {
+            $this->statusText = '';
+
+            return $this;
+        }
+
+        $this->statusText = $text;
+
+        return $this;
+    }
 }
