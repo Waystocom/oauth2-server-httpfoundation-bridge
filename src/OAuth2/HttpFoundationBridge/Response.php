@@ -118,7 +118,7 @@ class Response extends JsonResponse implements ResponseInterface
      *
      * @return object
      */
-    public function setStatusCode($statusCode, $text = null)
+    public function setStatusCode(int $statusCode, $text = null): object
     {
         $this->statusCode = $statusCode;
         if ($this->isInvalid()) {
